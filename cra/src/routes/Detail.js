@@ -1,23 +1,33 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import { useParams } from "react-router-dom";
 
-function Detail() {
+function Detail(props) {
+  //detail 안에 shoe 라는 state를 더 만들면 편할듯?
+  // 같은 데이터 복사본을 다른곳에 쓰게 되면 수정할 때 관리하기 번거롭다.
+
+  //url 파라미터를 가져오는 기능
+  let { id } = useParams();
+  console.log(id);
+//만약 상품 순서를 가나다 순으로 정렬하는 버튼을 클릭해 shoe의 상품이 가나다 순으로 정렬되었다고 하자.
+//그렇다면 입력된 id와 다른 순서의 상품이 출력되는 오류를 어떻게 방지할 수 있을까?
+  let findItem = props.shoe.find(function (x) {
+    return x.id == id;
+  });
+
   return (
     <Container>
       <Row>
         <Col sm></Col>
         <img src="/logo192.png" width="50%" height="50%" />
-        <h4>상품명</h4>
-        <p>상품설명</p>
-        <Col sm>간격</Col>
-        <img src="/logo192.png" width="50%" height="50%" />
-        <h4>상품명</h4>
-        <p>상품설명</p>
-        <Col sm>간격</Col>
-        <img src="/logo192.png" width="50%" height="50%" />
-        <h4>상품명</h4>
-        <p>상품설명</p>
+        <h4>{findItem.title}</h4>
+        <p>{findItem.content}</p>
+        <p>{findItem.price}</p>
+        <Button variant="danger" size="sm">
+          Danger
+        </Button>
       </Row>
     </Container>
   );

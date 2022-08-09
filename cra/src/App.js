@@ -8,6 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import jordan from "../src/img/airjordan.jpg";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import data from "./data.js";
@@ -19,7 +20,9 @@ import {
   useNavigate,
   Outlet,
 } from "react-router-dom";
+import axios from "axios";
 import Detail from "./routes/Detail.js";
+import Cart from "./routes/Cart";
 
 function App() {
   let [shoe] = useState(data);
@@ -46,7 +49,7 @@ function App() {
                   navigate("/detail");
                 }}
               >
-                Detailzz
+                Detail
               </Nav.Link>
               <Nav.Link
                 onClick={() => {
@@ -114,19 +117,11 @@ function App() {
           <Route path="member" element={<div>멤버들</div>} />
           <Route path="location" element={<div>회사위치</div>} />
         </Route>
+        {/* 페이지 여러개 만들고 싶을 땐 url 파라미터 사용! */}
+        <Route path="/detail/:id" element={<Detail shoe={shoe} />} />
+
+        <Route path="/cart" element={<Cart />} />
       </Routes>
-      {/* <div
-        className="main-bg"
-        //css로 하거나 아니면 style 태그 사용
-        style={{ backgroundImage: `url(${jordan})` }}
-      ></div> */}
-      {/* <Container>
-        <Row>
-          {shoe.map((a, i) => {
-            return <Card shoe={shoe[i]} i={i}></Card>;
-          })}
-        </Row>
-      </Container> */}
     </div>
   );
 }

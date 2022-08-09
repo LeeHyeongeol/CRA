@@ -1,6 +1,13 @@
 import Table from "react-bootstrap/Table";
 import { useSelector, useDispatch } from "react-redux";
-import { changeName, upAge, downAge, upCount, downCount } from "../store";
+import {
+  changeName,
+  upAge,
+  downAge,
+  upCount,
+  downCount,
+  delet,
+} from "../store";
 
 function Cart() {
   //app.js, detail.js, cart.js 에서 동일한 데이터가 필요할 경우 최상단에 보관
@@ -66,6 +73,14 @@ function Cart() {
                   }}
                 >
                   -
+                </button>
+                <button
+                  onClick={() => {
+                    //changeName()을 실행해달라고 store.js에 부탁하는 역할
+                    dispatch(delet(i));
+                  }}
+                >
+                  삭제
                 </button>
               </td>
             </tr>

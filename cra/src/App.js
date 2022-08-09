@@ -33,7 +33,27 @@ function App() {
     <div className="App">
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
+          <Navbar.Brand
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
+            ShoeShop
+          </Navbar.Brand>
+          <Nav.Link
+            onClick={() => {
+              navigate("/home");
+            }}
+          >
+            Home
+          </Nav.Link>
+          <Nav.Link
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            Cart
+          </Nav.Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -127,10 +147,20 @@ function App() {
 }
 
 function Card(props) {
+  let navigate = useNavigate();
+  console.log(props.i);
+  let num = props.i - 1;
   return (
     <>
       <Col sm></Col>
-      <img src="/logo192.png" width="10%" height="10%" />
+      <img
+        src="/logo192.png"
+        width="10%"
+        height="10%"
+        onClick={() => {
+          navigate(`/detail/${num}`);
+        }}
+      />
       <h4>{props.shoe.title}</h4>
       <p>{props.shoe.content}</p>
       <p>{props.shoe.price}</p>

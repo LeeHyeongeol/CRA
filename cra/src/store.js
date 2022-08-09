@@ -4,7 +4,7 @@ import stockInfo from "./store/stockInfo.js";
 //Redux 사용 이유 -> 컴포넌트간 state를 공유할 수 있어서 props 안해도 됨
 
 export let { changeName, upAge, downAge } = user.actions; //변경사항만 남음
-export let { upCount, downCount } = stockInfo.actions;
+export let { upCount, downCount, order, delet } = stockInfo.actions;
 
 let stock = createSlice({
   name: "stock",

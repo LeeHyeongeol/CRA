@@ -10,7 +10,7 @@ import jordan from "../src/img/airjordan.jpg";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "./data.js";
 import {
   BrowserRouter as Router,
@@ -25,6 +25,16 @@ import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart";
 
 function App() {
+  let obj = {
+    name: "Lee",
+  };
+  //유저가 처음 접속 시 localStorage 빈 배열 생성
+  useEffect(() => {
+    localStorage.getItem("detailId") !== undefined
+      ? localStorage.getItem("detailId")
+      : localStorage.setItem("detailId", JSON.stringify([]));
+  }, []);
+
   let [shoe] = useState(data);
   //페이지 이동을 도와주는 함수
   let navigate = useNavigate();
